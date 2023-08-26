@@ -42,12 +42,21 @@ function foo(evt) {
     elements.loader.classList.remove("is-hidden")
     fetchCatByBreed(evt)
         .then(data => {
-            Notiflix.Notify.success('Your kitty has been found')
-    createВescriptionCat(data);
+            console.log(data);
+            if (data.length === 1) {
+                Notiflix.Notify.success('Your kitty has been found')
+            } 
+             createВescriptionCat(data);
     })
         .catch(error => Notiflix.Notify.failure('Your kitty has not been found'))
 }
 function createВescriptionCat(arr) {
+if (arr.length === 0) {
+elements.catInfo.textContent = ''
+    }
+    
+
+
 elements.loader.classList.add("is-hidden")
 elements.catInfo.classList.remove("is-hidden")
     const { url, breeds } = arr[0]
